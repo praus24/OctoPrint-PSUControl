@@ -541,8 +541,12 @@ class PSUControl(octoprint.plugin.StartupPlugin,
                 self._logger.debug("Switching PSU On Using GPIO: %s" % self.onoffGPIOPin)
                 if not self.invertonoffGPIOPin:
                     pin_output=GPIO.HIGH
+                    time.sleep(0.5)
+                    pin_output=GPIO.LOW
                 else:
                     pin_output=GPIO.LOW
+                    time.sleep(0.5)
+                    pin_output=GPIO.HIGH
 
                 try:
                     GPIO.output(self._gpio_get_pin(self.onoffGPIOPin), pin_output)
@@ -589,8 +593,12 @@ class PSUControl(octoprint.plugin.StartupPlugin,
                 self._logger.debug("Switching PSU Off Using GPIO: %s" % self.onoffGPIOPin)
                 if not self.invertonoffGPIOPin:
                     pin_output=GPIO.LOW
+                    time.sleep(0.5)
+                    pin_output=GPIO.HIGH
                 else:
                     pin_output=GPIO.HIGH
+                    time.sleep(0.5)
+                    pin_output=GPIO.LOW
 
                 try:
                     GPIO.output(self._gpio_get_pin(self.onoffGPIOPin), pin_output)
